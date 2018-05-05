@@ -5,7 +5,7 @@ In the agile developement or adaptive software developement world the design pri
 - DRY - Don't Repeat Yourself
 - YAGNI - You "Ain't Gonna Need It
 - KISS - Keep It Simple, Stupid
-- SLP - Single Responsibility Principle
+- SRP - Single Responsibility Principle
 - OCP - Open Closed Principle
 - LSP -  Liskov Substitution Principle
 - ISP - Interface Segregation Principle
