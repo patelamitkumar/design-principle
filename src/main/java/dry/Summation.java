@@ -20,6 +20,10 @@ public class Summation {
 		return IntStream.range(0, n).limit(k).filter(e -> e % 2 != 0).sum();
 	}
 
+	public static int sum(int n, int k, IntPredicate predicate) {
+		return IntStream.range(0, n).limit(k).filter(predicate).sum();
+	}
+
 	public static void main(String[] args) {
 		// Bad Coding - Not applied DRY
 		System.out.println("Sum of First k even no from 0 to n is: " + sumEvenNo(100, 5));
@@ -29,9 +33,5 @@ public class Summation {
 		System.out.println("Sum of First k even no from 0 to n is: " + sum(100, 5, e -> e % 2 == 0));
 		System.out.println("Sum of First k odd no from 0 to n is: " + sum(100, 5, e -> e % 2 != 0));
 
-	}
-
-	public static int sum(int n, int k, IntPredicate predicate) {
-		return IntStream.range(0, n).limit(k).filter(predicate).sum();
 	}
 }
