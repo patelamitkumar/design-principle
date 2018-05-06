@@ -1,7 +1,7 @@
 # design-principle
 
 #### Why should I care ?
-Change is the only constant. Yes, you read it right, most of the time developers busy fixing a defect or implementing features on top of an existing code and often times developer curse the author (sometimes you yourself is the author of the code). So in the agile development or adaptive software development world the design principles are core to produce maintainable code. 
+Change is the only constant, right? Most of the time we developers are busy fixing defect or implementing features on top of an existing code and often times we curse the original author (sometimes we ourself is the author of the code). So in the agile development or adaptive software development world the design principles are core to produce maintainable code. 
 
 #### What are those principles ?
 - DRY - Don't Repeat Yourself
