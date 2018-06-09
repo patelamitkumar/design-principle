@@ -20,6 +20,8 @@ Duplicity is found in two forms as below
  
 Code duplicity is the result of copy/paste. Effort duplicity is when the same activity is performed at multiple place. For example the validation being done at UI layer written in Javascript and being done server side written with server side language.  
 
+<a href=../../tree/master/src/main/java/dry>Refer the example here</a>
+
 ##### KISS:
 Many a times the problem is simple, but we developer tend to add accidental complexities which is unnecessary.
 
