@@ -21,7 +21,16 @@ Duplicity is found in two forms as below
 Code duplicity is the result of copy/paste. Effort duplicity is when the same activity is performed at multiple place. For example the validation being done at UI layer written in Javascript and being done server side written with server side language. 
 
 ###### An example - calculating sum
-Let's say we have got the below summation class. The requirement was initially to find the sum of Even number which is represented by function sumEvenNo. Then there was another requirement later to find sum of odd number which is represented by sumOddNo. Here the problem is that the sum logic is same but getting duplciated and hence violating DRY.
+Let's say Fred is developing a Summation class to find the Sum of first k even numbers.
+
+```java
+public class Summation {
+	public static int sumEvenNo(int n, int k) {
+		return IntStream.range(0, n).limit(k).filter(e -> e % 2 == 0).sum();
+	}
+}
+```
+The class is presented and the client is happy to use the class. After sometime client asked to find sum of first k odd number. Fred was in a hurry and copied the sumEvenNo function and changed to make it work for odd number. Client is happy to use both sumEvenNo and sumOddNo functionality.
 
 ```java
 public class Summation {
@@ -32,14 +41,10 @@ public class Summation {
 	public static int sumOddNo(int n, int k) {
 		return IntStream.range(0, n).limit(k).filter(e -> e % 2 != 0).sum();
 	}
-
-	public static void main(String[] args) {
-		System.out.println("Sum of First k even no from 0 to n is: " + sumEvenNo(100, 5));
-		System.out.println("Sum of First k odd no from 0 to n is: " + sumOddNo(100, 5));
-	}
 }
 ```
-Let's fix it..
+
+After sometime client again in need of a summation of prime numbers. Now Fred realized the mistake of not applying DRY and he decided to refactor. 
 
 ```java
 public class Summation {
@@ -53,7 +58,7 @@ public class Summation {
 	}
 }
 ```
-Now if there is need of summation of any other type of number (real, prime etc), you dont need to duplicate the sum logic. Just invoke the sum method with the list of required numbers.
+The code above is now abiding by the rule of DRY and hence client can use the sum behaviour for any type of numbers.
 
 <a href=../../tree/master/src/main/java/dry>Refer the complete example here</a>
 
