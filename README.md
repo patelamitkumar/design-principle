@@ -66,7 +66,96 @@ Many a times the problem is simple, but we developer tend to add accidental comp
 You should keep in mind familiar doesn't mean simple. 
 
 ##### SRP:
-A class should have one and only one reason to change, meaning that a class should have only one job.
+A class should have one and only one reason to change, meaning that a class should have only one job. You can think it is like master of one but not jack of all.
+
+The below Book class is violating SRP. The book class should only provide behaviour related to book activities like get author, get next page, get current page etc. However it has taken the responsibility of printing which should be taken care by other printer master class.
+
+```java
+public class Book {
+	private String title;
+	private String author;
+
+	public Book(String title, String author) {
+		this.title = title;
+		this.author = author;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	void turnPage() {
+		// pointer to next page
+	}
+
+	String getCurrentPage() {
+		return "current page";
+	}
+
+	// This behavior should be separated out
+	public void print() {
+		System.out.println("Book: "+getCurrentPage());
+	}
+
+}
+```
+Let's try to fix the problem.
+
+```java
+public class Book {
+	private String title;
+	private String author;
+
+	public Book(String title, String author) {
+		this.title = title;
+		this.author = author;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	void turnPage() {
+		// pointer to next page
+	}
+
+	String getCurrentPage() {
+		return "current page";
+	}
+}
+
+public interface Printer {
+	public void print(Book book);
+}
+
+public class HtmlPrinter implements Printer {
+
+	@Override
+	public void print(Book book) {
+		System.out.println("HtmlPrinter: " + "<html><body>" + book.getCurrentPage() + "</body></html>");
+	}
+
+}
+
+public class PlainTextPrinter implements Printer {
+
+	@Override
+	public void print(Book book) {
+		System.out.println("PlainTextPrinter: " + book.getCurrentPage());
+	}
+
+}
+```
+
+<a href=../../tree/master/src/main/java/srp>Refer the complete example here</a>
 
 ##### OCP:
 Objects or entities should be open for extension, but closed for modification. 
