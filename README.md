@@ -18,9 +18,47 @@ Duplicity is found in two forms as below
  - Code duplicity
  - Effort duplicity
  
-Code duplicity is the result of copy/paste. Effort duplicity is when the same activity is performed at multiple place. For example the validation being done at UI layer written in Javascript and being done server side written with server side language.  
+Code duplicity is the result of copy/paste. Effort duplicity is when the same activity is performed at multiple place. For example the validation being done at UI layer written in Javascript and being done server side written with server side language. 
 
-<a href=../../tree/master/src/main/java/dry>Refer the example here</a>
+Look at the below Sum function. It has been duplicated and hence when there is ask for summation of other numbers (real, prime etc) you tend to duplicate the code by writing more sumXXX function.
+
+```java
+public class Summation {
+
+	public static int sumEvenNo(int n, int k) {
+		return IntStream.range(0, n).limit(k).filter(e -> e % 2 == 0).sum();
+	}
+
+	public static int sumOddNo(int n, int k) {
+		return IntStream.range(0, n).limit(k).filter(e -> e % 2 != 0).sum();
+	}
+
+	public static void main(String[] args) {
+		// Bad Coding - Not applied DRY
+		System.out.println("Sum of First k even no from 0 to n is: " + sumEvenNo(100, 5));
+		System.out.println("Sum of First k odd no from 0 to n is: " + sumOddNo(100, 5));
+	}
+}
+```
+Let's refactor it and hence it becomes as below..
+
+```java
+public class Summation {
+
+	public static int sum(int n, int k, IntPredicate predicate) {
+		return IntStream.range(0, n).limit(k).filter(predicate).sum();
+	}
+
+	public static void main(String[] args) {
+		// Good coding - Applied DRY
+		System.out.println("Sum of First k even no from 0 to n is: " + sum(100, 5, e -> e % 2 == 0));
+		System.out.println("Sum of First k odd no from 0 to n is: " + sum(100, 5, e -> e % 2 != 0));
+
+	}
+}
+```
+
+<a href=../../tree/master/src/main/java/dry>Refer the complete example here</a>
 
 ##### KISS:
 Many a times the problem is simple, but we developer tend to add accidental complexities which is unnecessary.
