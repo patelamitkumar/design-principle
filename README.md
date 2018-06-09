@@ -20,11 +20,11 @@ Duplicity is found in two forms as below
  
 Code duplicity is the result of copy/paste. Effort duplicity is when the same activity is performed at multiple place. For example the validation being done at UI layer written in Javascript and being done server side written with server side language. 
 
-Look at the below Sum function. It has been duplicated and hence when there is ask for summation of other numbers (real, prime etc) you tend to duplicate the code by writing more sumXXX function.
+###### An example - calculating sum
+Let's say we have got the below summation class. The requirement was initially to find the sum of Even number which is represented by function sumEvenNo. Then there was another requirement later to find sum of odd number which is represented by sumOddNo. Here the problem is that the sum logic is same but getting duplciated and hence violating DRY.
 
 ```java
 public class Summation {
-
 	public static int sumEvenNo(int n, int k) {
 		return IntStream.range(0, n).limit(k).filter(e -> e % 2 == 0).sum();
 	}
@@ -34,29 +34,26 @@ public class Summation {
 	}
 
 	public static void main(String[] args) {
-		// Bad Coding - Not applied DRY
 		System.out.println("Sum of First k even no from 0 to n is: " + sumEvenNo(100, 5));
 		System.out.println("Sum of First k odd no from 0 to n is: " + sumOddNo(100, 5));
 	}
 }
 ```
-Let's refactor it and hence it becomes as below..
+Let's fix it..
 
 ```java
 public class Summation {
-
 	public static int sum(int n, int k, IntPredicate predicate) {
 		return IntStream.range(0, n).limit(k).filter(predicate).sum();
 	}
 
 	public static void main(String[] args) {
-		// Good coding - Applied DRY
 		System.out.println("Sum of First k even no from 0 to n is: " + sum(100, 5, e -> e % 2 == 0));
 		System.out.println("Sum of First k odd no from 0 to n is: " + sum(100, 5, e -> e % 2 != 0));
-
 	}
 }
 ```
+Now if there is need of summation of any other type of number (real, prime etc), you dont need to duplicate the sum logic. Just invoke the sum method with the list of required numbers.
 
 <a href=../../tree/master/src/main/java/dry>Refer the complete example here</a>
 
@@ -68,7 +65,8 @@ You should keep in mind familiar doesn't mean simple.
 ##### SRP:
 A class should have one and only one reason to change, meaning that a class should have only one job. You can think it is like master of one but not jack of all.
 
-The below Book class is violating SRP. The book class should only provide behaviour related to book activities like get author, get next page, get current page etc. However it has taken the responsibility of printing which should be taken care by other printer master class.
+###### An example - Printing books
+Let's say we have the below Book class. The book class should only provide behaviour related to book activities like get author, get next page, get current page etc. However it has taken the responsibility of printing which should be taken care by other printer master class.
 
 ```java
 public class Book {
@@ -103,7 +101,7 @@ public class Book {
 
 }
 ```
-Let's try to fix the problem.
+Let's fix it by moving the print behaviour to specialized printer classes
 
 ```java
 public class Book {
@@ -154,6 +152,7 @@ public class PlainTextPrinter implements Printer {
 
 }
 ```
+Now all the 3 classes (book, HtmlPrinter, PlainTextPrinter) are doing a single task and they are master of the activity.
 
 <a href=../../tree/master/src/main/java/srp>Refer the complete example here</a>
 
