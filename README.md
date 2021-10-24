@@ -6,11 +6,11 @@ Change is the only constant, right? Most of the time we developers are busy fixi
 #### What are those principles ?
 - DRY - Don't Repeat Yourself
 - KISS - Keep It Simple Stupid
-- SRP - Single Responsibility Principle
-- OCP - Open Closed Principle
-- LSP -  Liskov Substitution Principle
-- ISP - Interface Segregation Principle
-- DIP - Dependency Inversion Principle
+- SRP - Single Responsibility Principle [Goal: This principle aims to separate behaviours so that if bugs arise as a result of your change, it won’t affect other unrelated behaviours.]
+- OCP - Open Closed Principle [Goal: This is to avoid causing bugs wherever the Class is being used.]
+- LSP -  Liskov Substitution Principle [Goal: This principle aims to enforce consistency so that the parent Class or its child Class can be used in the same way without any errors.]
+- ISP - Interface Segregation Principle [Goal: This principle aims at splitting a set of actions into smaller sets so that a Class executes ONLY the set of actions it requires.]
+- DIP - Dependency Inversion Principle [Goal: This principle aims at reducing the dependency of a high-level Class on the low-level Class by introducing an interface.]
 - YAGNI - You "Ain't Gonna Need It
 
 ##### DRY:
